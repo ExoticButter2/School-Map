@@ -12,7 +12,11 @@
         "C:\\Users\\maksi\\Documents\\Arduino\\libraries\\TFT_eSPI/**",
         "C:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\SPI\\src/**",
         "C:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\FS\\src/**",
-        "C:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\SPIFFS\\src/**"
+        "C:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\SPIFFS\\src/**",
+        "C:\\Users\\maksi\\Documents\\Arduino\\libraries\\XPT2046_Touchscreen_TT\\src/**",
+        "C:\\Users\\maksi\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library/**",
+        "C:\\Users\\maksi\\Documents\\Arduino\\libraries\\Adafruit_BusIO/**",
+        "C:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\Wire\\src/**"
       ],
       "forcedInclude": [
         "C:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\cores\\esp32\\Arduino.h"
@@ -55,6 +59,10 @@
         "-IC:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\SPI\\src",
         "-IC:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\FS\\src",
         "-IC:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\SPIFFS\\src",
+        "-IC:\\Users\\maksi\\Documents\\Arduino\\libraries\\XPT2046_Touchscreen_TT\\src",
+        "-IC:\\Users\\maksi\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library",
+        "-IC:\\Users\\maksi\\Documents\\Arduino\\libraries\\Adafruit_BusIO",
+        "-IC:\\Users\\maksi\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.12\\libraries\\Wire\\src",
         "@C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\build/build_opt.h",
         "@C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\build/file_opts",
         "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\build\\sketch\\SchoolMap.ino.cpp",
