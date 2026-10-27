@@ -1,11 +1,20 @@
 #include <TFT_eSPI.h>
 #include <XPT2046_Touchscreen_TT.h>
+#include <SPI.h>
 
-TFT_eSPI tft = TFT_eSPI();
+#define TS_CLK (int8_t)42
+#define TS_DIN (int8_t)41
+#define TS_DOUT (int8_t)40
+#define TS_CS (int8_t)39
+#define TS_IRQ (int8_t)38
+
+TFT_eSPI tft;
+SPIClass touchScreenSpi(VSPI);
 
 void setup()
 {
     Serial.begin(115200);
+    touchScreenSpi.begin(TS_CLK, TS_DIN, TS_DOUT, TS_CS);
     Serial.println("Initializing TFT..");
     tft.init();
 
