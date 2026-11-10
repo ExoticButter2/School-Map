@@ -1,23 +1,6 @@
-#include <TFT_eSPI.h>
-#include <XPT2046_Touchscreen_TT.h>
-#include <SPI.h>
 #include <DragFunctions.h>
-#include <WiFi.h>
-#include <Secrets.h>
-
-#define TS_CLK 42
-#define TS_DIN 41
-#define TS_DOUT 40
-#define TS_CS 39
-#define TS_IRQ 38
-
-#define DISPLAY_LED (int8_t) 18
-#define DISPLAY_CS (int8_t) 4
-#define DISPLAY_RESET (int8_t) 15
-#define DISPLAY_DC (int8_t) 5
-#define DISPLAY_MISO (int8_t) 20 // SDO pin
-#define DISPLAY_MOSI (int8_t) 45 // SDI pin
-#define DISPLAY_SCLK (int8_t) 21
+#include <PinLayout.h>
+#include <InitFunctions.h>
 
 const int16_t TOUCH_THRESHOLD = 400.0F;
 
@@ -27,23 +10,6 @@ TFT_eSprite mainSprite(&tft);
 SPIClass touchScreenSpi(VSPI);
 
 XPT2046_Touchscreen* touchScreen;
-
-void InitializeRoomsAndWiFi()
-{
-    int status = WL_IDLE_STATUS;
-    while (status != WL_CONNECTED)
-    {
-        status = WiFi.begin(WIFI_SSID, WIFI_Password);
-        delay(10000);
-    }
-
-    while (!Serial)
-    {
-
-    }
-
-    Serial.println("Connected to WiFi");
-}
 
 void OnTouch(ulong initialTime)
 {
@@ -86,40 +52,20 @@ void OnTouch(ulong initialTime)
 void setup()
 {
     Serial.begin(115200);
-    InitializeRoomsAndWiFi();
+    InitializeWiFi();
 
-    Serial.println("Initializing TFT..");
-    tft.init();
-    tft.setRotation(0);
+    TFT_eSPI tft = InitializeDisplay();
 
-    if (!mainSprite.createSprite(20, 20))
-    {
-        Serial.println("Failed to create sprite");
-    }
+    // if (!mainSprite.createSprite(20, 20))
+    // {
+    //     Serial.println("Failed to create sprite");
+    // }
 
-    mainSprite.fillSprite(TFT_WHITE);
+    // mainSprite.fillSprite(TFT_WHITE);
 
-    touchScreen = new XPT2046_Touchscreen(TS_CS);
+    InitializeTouchScreen();
 
-    if (!touchScreenSpi.begin(TS_CLK, TS_DOUT, TS_DIN, TS_CS))
-    {
-        Serial.println("Failed to initialize touch screen SPI");
-    }
 
-    if (!touchScreen->begin(touchScreenSpi))
-    {
-        Serial.println("Failed to initialize touch screen");
-    }
-
-    touchScreen->setRotation(2);
-    touchScreen->setThresholds(TOUCH_THRESHOLD);
-
-    Serial.println("Initialized TFT successfully");
-    pinMode(DISPLAY_LED, OUTPUT);
-    digitalWrite(DISPLAY_LED, HIGH);
-
-    delay(3000);
-    Serial.printf("PSRAM size: %d\n", ESP.getPsramSize());
 }
 
 void loop()
