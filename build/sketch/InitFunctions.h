@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\InitFunctions.h"
 #include <TFT_eSPI.h>
 #include <XPT2046_Touchscreen_TT.h>
 #include <SPI.h>

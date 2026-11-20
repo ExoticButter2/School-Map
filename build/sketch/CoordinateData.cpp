@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\CoordinateData.cpp"
 #include <CoordinateData.h>
 #include <string.h>
 #include <iostream>

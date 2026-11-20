@@ -1,0 +1,4 @@
+#define DISPLAY_ROTATION 0
+
+const int TOUCH_THRESHOLD = 400;
+#define TOUCH_ROTATION 2

@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\PinLayout.h"
 #define TS_CLK 42
 #define TS_DIN 41
 #define TS_DOUT 40

@@ -68,3 +68,6 @@ vcpkg_installed/
 Testing/
 .cache/
 SchoolMap/Secrets.h
+LICENSE
+build/partitions.csv
+build/partitions.csv

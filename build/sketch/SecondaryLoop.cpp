@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\SecondaryLoop.cpp"
 #include <SecondaryLoop.h>
 #include <vector>
 

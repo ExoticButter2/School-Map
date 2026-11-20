@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\SchoolMap.ino"
 #include <DragFunctions.h>
 #include <PinLayout.h>
 #include <InitFunctions.h>
@@ -11,6 +13,13 @@ SPIClass touchScreenSpi(VSPI);
 
 XPT2046_Touchscreen* touchScreen;
 
+#line 14 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\SchoolMap.ino"
+void OnTouch(ulong initialTime);
+#line 52 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\SchoolMap.ino"
+void setup();
+#line 71 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\SchoolMap.ino"
+void loop();
+#line 14 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\SchoolMap.ino"
 void OnTouch(ulong initialTime)
 {
     uint16_t x, y;
