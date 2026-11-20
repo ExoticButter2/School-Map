@@ -1,0 +1,21 @@
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\.vscode\\arduino.json"
+{
+  "schemaVersion": 1,
+  "port": "COM4",
+  "configuration": "UploadSpeed=921600,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,CPUFreq=240,FlashMode=qio,FlashSize=16M,PartitionScheme=fatflash,DebugLevel=none,PSRAM=opi,LoopCore=1,EventsCore=1,EraseFlash=none,JTAGAdapter=default,ZigbeeMode=default",
+  "output": "build",
+  "board": "esp32:esp32:esp32s3",
+  "programmer": "esptool",
+  "useProgrammer": false,
+  "optimize_for_debug": false,
+  "configurationRequired": true,
+  "compile_profile": "",
+  "monitorPortSettings": {
+    "port": "COM4",
+    "baudRate": 115200,
+    "lineEnding": "\r\n",
+    "dataBits": 8,
+    "parity": "none",
+    "stopBits": "one"
+  }
+}

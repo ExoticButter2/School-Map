@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\InitFunctions.cpp"
 #include <InitFunctions.h>
 
 OnTouchCallback onTouchCallbackFunction = nullptr;
