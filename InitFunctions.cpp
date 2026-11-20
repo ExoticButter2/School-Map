@@ -1,6 +1,6 @@
 #include <InitFunctions.h>
 
-OnTouchCallback onTouchCallbackFunction;
+OnTouchCallback onTouchCallbackFunction = nullptr;
 
 TFT_eSPI InitializeDisplay()
 {
@@ -14,13 +14,13 @@ TFT_eSPI InitializeDisplay()
     return tft;
 }
 
-XPT2046_Touchscreen InitializeTouchScreen(OnTouchCallback onTouch)
+XPT2046_Touchscreen* InitializeTouchScreen(OnTouchCallback onTouch)
 {
     onTouchCallbackFunction = onTouch;
 
     SPIClass touchScreenSpi(VSPI);
 
-    XPT2046_Touchscreen touchScreen(TS_CS);
+    XPT2046_Touchscreen* touchScreen = new XPT2046_Touchscreen(TS_CS);
 
     if (!touchScreenSpi.begin(TS_CLK, TS_DOUT, TS_DIN, TS_CS))
     {

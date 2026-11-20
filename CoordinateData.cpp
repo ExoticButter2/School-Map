@@ -3,13 +3,13 @@
 #include <iostream>
 #include <vector>
 
-struct Coordinates
+struct Coordinates_t
 {
     int x;
     int y;
 };
 
-struct Room
+struct Room_t
 {
     int width;
     int height;
@@ -17,12 +17,12 @@ struct Room
     std::string roomName;
 };
 
-struct Floor
+struct Floor_t
 {
-    std::vector<Room> rooms;
+    std::vector<Room_t> rooms;
 };
 
-struct Building
+struct Building_t
 {
-    std::vector<Floor> floors;
+    std::vector<Floor_t> floors;
 };

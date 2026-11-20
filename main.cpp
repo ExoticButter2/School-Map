@@ -1,8 +1,7 @@
 #include <DragFunctions.h>
-#include <PinLayout.h>
+#include <TFTPinLayout.h>
 #include <InitFunctions.h>
-
-const int16_t TOUCH_THRESHOLD = 400.0F;
+#include <Arduino.h>
 
 TFT_eSPI tft;
 TFT_eSprite mainSprite(&tft);
@@ -11,7 +10,7 @@ SPIClass touchScreenSpi(VSPI);
 
 XPT2046_Touchscreen* touchScreen;
 
-void OnTouch(ulong initialTime)
+void OnTouch()
 {
     uint16_t x, y;
     uint8_t z;
@@ -45,8 +44,8 @@ void OnTouch(ulong initialTime)
 
     mainSprite.pushSprite(pixelX, pixelY);
 
-    ulong elapsedTime = micros() - initialTime;
-    Serial.printf("%luHz\n", 1000000UL / elapsedTime); // in seconds
+    // ulong elapsedTime = micros() - initialTime;
+    // Serial.printf("%luHz\n", 1000000UL / elapsedTime); // in seconds
 }
 
 void setup()
@@ -63,7 +62,7 @@ void setup()
 
     // mainSprite.fillSprite(TFT_WHITE);
 
-    InitializeTouchScreen();
+    InitializeTouchScreen(OnTouch);
 
 
 }

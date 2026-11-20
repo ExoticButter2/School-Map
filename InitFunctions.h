@@ -3,12 +3,12 @@
 #include <SPI.h>
 #include <Secrets.h>
 #include <DisplaySettings.h>
-#include <PinLayout.h>
+#include <TFTPinLayout.h>
 #include <WiFi.h>
 
-typedef void (*OnTouchCallback)(void)
+typedef void (*OnTouchCallback)(void);
 
 TFT_eSPI InitializeDisplay();
-XPT2046_Touchscreen InitializeTouchScreen();
+XPT2046_Touchscreen* InitializeTouchScreen(OnTouchCallback onTouch);
 void InitializeWiFi();
 void InitializeRooms();
