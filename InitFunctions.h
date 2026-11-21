@@ -8,8 +8,11 @@
 
 typedef void (*OnTouchCallback)(void);
 
-void InitializeDisplay(TFT_eSPI& tft);
-XPT2046_Touchscreen* InitializeTouchScreen(OnTouchCallback onTouch);
+TFT_eSPI* tft;
+XPT2046_Touchscreen* touchScreen;
+
+void InitializeDisplay();
+bool InitializeTouchScreen(OnTouchCallback onTouch);
 void InitializeWiFi();
 std::unordered_map<std::string, Building> InitializeBuildings();
 

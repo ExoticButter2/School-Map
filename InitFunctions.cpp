@@ -5,40 +5,61 @@
 #include <TouchScreenPinout.h>
 #include <WiFi.h>
 #include <User_Setups/Setup21_ILI9488.h>
+#include <SecondaryLoop.h>
 
 OnTouchCallback onTouchCallbackFunction = nullptr;
 
-void InitializeDisplay(TFT_eSPI& tft)
+TFT_eSPI* tft;
+XPT2046_Touchscreen* touchScreen;
+
+void InitializeDisplay()
 {
-    tft.init();
-    tft.setRotation(DISPLAY_ROTATION);
+    tft = new TFT_eSPI();
+
+    tft->init();
+    tft->setRotation(DISPLAY_ROTATION);
 
     pinMode(TFT_BL, OUTPUT);
     digitalWrite(TFT_BL, HIGH);
 }
 
-XPT2046_Touchscreen* InitializeTouchScreen(OnTouchCallback onTouch)
+bool InitializeTouchScreen(OnTouchCallback onTouch)
 {
     onTouchCallbackFunction = onTouch;
 
     SPIClass touchScreenSpi(VSPI);
 
-    XPT2046_Touchscreen* touchScreen = new XPT2046_Touchscreen(TS_CS);
+    touchScreen = new XPT2046_Touchscreen(TS_CS);
 
     if (!touchScreenSpi.begin(TS_CLK, TS_DOUT, TS_DIN, TS_CS))
     {
         Serial.println("Failed to initialize touch screen SPI");
+        return false;
     }
 
     if (!touchScreen->begin(touchScreenSpi))
     {
         Serial.println("Failed to initialize touch screen");
+        return false;
     }
 
     touchScreen->setRotation(TOUCH_ROTATION);
     touchScreen->setThresholds(TOUCH_THRESHOLD);
 
-    return touchScreen;
+    AddFunction(&CheckForTouch);
+
+    return true;
+}
+
+void CheckForTouch()
+{
+    if (touchScreen->touched())
+    {
+        if (onTouchCallbackFunction != nullptr)
+        {
+            onTouchCallbackFunction();
+        }
+    }
 }
 
 void InitializeWiFi()
@@ -46,7 +67,7 @@ void InitializeWiFi()
     int status = WL_IDLE_STATUS;
     while (status != WL_CONNECTED)
     {
-        status = WiFi.begin(WIFI_SSID, WIFI_Password);
+        status = WiFi.begin(WIFI_SSID.c_str(), WIFI_Password.c_str());
         delay(10000);
     }
 
