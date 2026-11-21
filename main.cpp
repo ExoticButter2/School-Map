@@ -1,7 +1,6 @@
-#include <DragFunctions.h>
-#include <TFTPinLayout.h>
 #include <InitFunctions.h>
 #include <Arduino.h>
+#include <CoordinateData.h>
 
 TFT_eSPI tft;
 TFT_eSprite mainSprite(&tft);
@@ -51,9 +50,15 @@ void OnTouch()
 void setup()
 {
     Serial.begin(115200);
-    InitializeWiFi();
+    //InitializeWiFi();
 
-    TFT_eSPI tft = InitializeDisplay();
+    InitializeDisplay(tft);
+
+    //delay(5000);
+
+    // Serial.printf("LED Pin: %d", DISPLAY_LED);
+    // pinMode(DISPLAY_LED, OUTPUT);
+    // digitalWrite(DISPLAY_LED, HIGH);
 
     // if (!mainSprite.createSprite(20, 20))
     // {
@@ -62,9 +67,8 @@ void setup()
 
     // mainSprite.fillSprite(TFT_WHITE);
 
-    InitializeTouchScreen(OnTouch);
-
-
+    //InitializeTouchScreen(OnTouch);
+    //auto buildings = InitializeBuildings();
 }
 
 void loop()

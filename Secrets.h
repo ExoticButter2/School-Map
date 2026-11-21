@@ -1,2 +1,7 @@
-#define WIFI_SSID "WLAN1234"
-#define WIFI_Password "Gmo115218@1978"
+#ifndef SECRETS
+#define SECRETS
+
+extern auto WIFI_SSID = "WLAN1234";
+extern auto WIFI_Password = "Gmo115218@1978";
+
+#endif

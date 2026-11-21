@@ -1,18 +1,20 @@
-#line 1 "C:\\Users\\maksi\\OneDrive\\Documents\\GitHub\\School-Map\\SchoolMap\\InitFunctions.cpp"
 #include <InitFunctions.h>
+#include <SPI.h>
+#include <Secrets.h>
+#include <DisplaySettings.h>
+#include <TouchScreenPinout.h>
+#include <WiFi.h>
+#include <User_Setups/Setup21_ILI9488.h>
 
 OnTouchCallback onTouchCallbackFunction = nullptr;
 
-TFT_eSPI InitializeDisplay()
+void InitializeDisplay(TFT_eSPI& tft)
 {
-    TFT_eSPI tft;
     tft.init();
     tft.setRotation(DISPLAY_ROTATION);
 
-    pinMode(DISPLAY_LED, OUTPUT);
-    digitalWrite(DISPLAY_LED, HIGH);
-
-    return tft;
+    pinMode(TFT_BL, OUTPUT);
+    digitalWrite(TFT_BL, HIGH);
 }
 
 XPT2046_Touchscreen* InitializeTouchScreen(OnTouchCallback onTouch)
@@ -56,7 +58,9 @@ void InitializeWiFi()
     Serial.println("Connected to WiFi");
 }
 
-void InitializeRooms()
+std::unordered_map<std::string, Building> InitializeBuildings()
 {
+    std::unordered_map<std::string, Building> buildings;
 
+    return buildings;
 }
