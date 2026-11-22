@@ -7,10 +7,10 @@
 #include <User_Setups/Setup21_ILI9488.h>
 #include <SecondaryLoop.h>
 
-OnTouchCallback onTouchCallbackFunction = nullptr;
-
 TFT_eSPI* tft;
 XPT2046_Touchscreen* touchScreen;
+
+OnTouchCallback onTouchCallbackFunction = nullptr;
 
 void InitializeDisplay()
 {
@@ -21,6 +21,8 @@ void InitializeDisplay()
 
     pinMode(TFT_BL, OUTPUT);
     digitalWrite(TFT_BL, HIGH);
+
+    Serial.println("Initialized Display");
 }
 
 bool InitializeTouchScreen(OnTouchCallback onTouch)
@@ -48,6 +50,7 @@ bool InitializeTouchScreen(OnTouchCallback onTouch)
 
     AddFunction(&CheckForTouch);
 
+    Serial.println("Initialized Touchscreen");
     return true;
 }
 

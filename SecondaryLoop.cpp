@@ -1,32 +1,42 @@
 #include <SecondaryLoop.h>
-#include <functional>
 #include <Arduino.h>
+#include <vector>
 
 std::vector<void(*)()> functionsToCall;
-TaskHandle_t loopTask;
+
+TaskHandle_t loopTask = nullptr;
+SemaphoreHandle_t functionsMutex = nullptr;
 
 void AddFunction(void (*function)())
 {
+    xSemaphoreTake(functionsMutex, portMAX_DELAY);
+
     functionsToCall.push_back(function);
+
+    xSemaphoreGive(functionsMutex);
 }
 
 void RemoveFunction(void (*function)())
 {
-    for (int i = 0; i < functionsToCall.size(); i++)
-    {
-        const auto& possibleMatch = functionsToCall[i];
+    xSemaphoreTake(functionsMutex, portMAX_DELAY);
 
-        if (possibleMatch == function)
+    for (auto i = functionsToCall.begin(); i != functionsToCall.end(); ++i)
+    {
+        if (*i == function)
         {
-            functionsToCall.erase(functionsToCall.begin() + i);
-            
+            functionsToCall.erase(i);
+            break;
         }
     }
+
+    xSemaphoreGive(functionsMutex);
 }
 
 void InitializeSecondaryLoop()
 {
-    xTaskCreatePinnedToCore(SecondaryLoop, "SecondaryLoop", 10000, NULL, 1, &loopTask, 0);
+    functionsMutex = xSemaphoreCreateMutex();
+
+    xTaskCreatePinnedToCore(SecondaryLoop, "SecondaryLoop", 100000, NULL, 1, &loopTask, 0);
     Serial.println("Initialized secondary loop");
 }
 
@@ -34,9 +44,15 @@ void SecondaryLoop(void* parameters)
 {
     for (;;)
     {
-        for (const auto& function: functionsToCall)
+        std::vector<void(*)()> functionsCopy = functionsToCall;
+
+        for (const auto& function: functionsCopy)
         {
             function();
         }
+
+        Serial.printf("Stack high watermark: %d", uxTaskGetStackHighWaterMark(loopTask));
+
+        vTaskDelay(1);
     }
 }

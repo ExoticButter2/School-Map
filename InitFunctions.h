@@ -8,9 +8,10 @@
 
 typedef void (*OnTouchCallback)(void);
 
-TFT_eSPI* tft;
-XPT2046_Touchscreen* touchScreen;
+extern TFT_eSPI* tft;
+extern XPT2046_Touchscreen* touchScreen;
 
+void CheckForTouch();
 void InitializeDisplay();
 bool InitializeTouchScreen(OnTouchCallback onTouch);
 void InitializeWiFi();
