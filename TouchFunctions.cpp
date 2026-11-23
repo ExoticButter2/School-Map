@@ -41,3 +41,14 @@ void OnTouch()
     // ulong elapsedTime = micros() - initialTime;
     // Serial.printf("%luHz\n", 1000000UL / elapsedTime); // in seconds
 }
+
+void CheckForTouch()
+{
+    if (touchScreen->touched())
+    {
+        if (onTouchCallbackFunction != nullptr)
+        {
+            onTouchCallbackFunction();
+        }
+    }
+}

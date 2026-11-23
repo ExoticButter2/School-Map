@@ -2,28 +2,21 @@
 #include <Arduino.h>
 #include <TouchFunctions.h>
 #include <SecondaryLoop.h>
+#include <string>
 
 void setup()
 {
     Serial.begin(115200);
-    //InitializeWiFi();
+    InitializeWiFi();
     delay(3000);
 
     InitializeDisplay();
 
-    // if (!mainSprite.createSprite(20, 20))
-    // {
-    //     Serial.println("Failed to create sprite");
-    // }
-
-    // mainSprite.fillSprite(TFT_WHITE);
-
-    InitializeTouchScreen(OnTouch);
     InitializeSecondaryLoop();
 
-    // Serial.printf("Core: %d", xPortGetCoreID());
-    // Serial.printf("Available PSRAM: %u", ESP.getFreePsram());
-    auto buildings = InitializeBuildings();
+    InitializeTouchScreen(OnTouch);
+
+    std::unordered_map<std::string, Building> buildings = InitializeBuildings();
 }
 
 void loop()

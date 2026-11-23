@@ -11,7 +11,8 @@ typedef void (*OnTouchCallback)(void);
 extern TFT_eSPI* tft;
 extern XPT2046_Touchscreen* touchScreen;
 
-void CheckForTouch();
+extern OnTouchCallback onTouchCallbackFunction;
+
 void InitializeDisplay();
 bool InitializeTouchScreen(OnTouchCallback onTouch);
 void InitializeWiFi();

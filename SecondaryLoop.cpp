@@ -36,12 +36,16 @@ void InitializeSecondaryLoop()
 {
     functionsMutex = xSemaphoreCreateMutex();
 
-    xTaskCreatePinnedToCore(SecondaryLoop, "SecondaryLoop", 100000, NULL, 1, &loopTask, 0);
-    Serial.println("Initialized secondary loop");
+    BaseType_t result = xTaskCreatePinnedToCore(SecondaryLoop, "SecondaryLoop", 30000, NULL, 1, &loopTask, 1);
+
+    Serial.printf("Task creation: %d\n", result);
+    Serial.println("Initialized secondary loop\n");
 }
 
 void SecondaryLoop(void* parameters)
 {
+    Serial.println("Secondary loop started\n");
+
     for (;;)
     {
         std::vector<void(*)()> functionsCopy = functionsToCall;
@@ -51,7 +55,7 @@ void SecondaryLoop(void* parameters)
             function();
         }
 
-        Serial.printf("Stack high watermark: %d", uxTaskGetStackHighWaterMark(loopTask));
+        Serial.printf("Stack high watermark: %d\n", uxTaskGetStackHighWaterMark(loopTask));
 
         vTaskDelay(1);
     }
