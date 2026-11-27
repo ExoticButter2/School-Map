@@ -1,7 +1,7 @@
 #ifndef STRUCTURE_CREATOR
 #define STRUCTURE_CREATOR
 
-#include <CoordinateData.h>
+#include "CoordinateData.h"
 #include <vector>
 #include <string>
 

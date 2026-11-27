@@ -1,8 +1,8 @@
 #ifndef COORDINATE_DATA
 #define COORDINATE_DATA
 
-#include <string>
 #include <vector>
+#include <string>
 
 struct Coordinates
 {

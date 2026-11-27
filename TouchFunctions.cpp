@@ -1,5 +1,5 @@
-#include <TouchFunctions.h>
-#include <InitFunctions.h>
+#include "TouchFunctions.h"
+#include "InitFunctions.h"
 
 void DragScreen(int x, int y)
 {

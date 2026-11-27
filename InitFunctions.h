@@ -3,7 +3,7 @@
 
 #include <TFT_eSPI.h>
 #include <XPT2046_Touchscreen_TT.h>
-#include <CoordinateData.h>
+#include "CoordinateData.h"
 #include <string>
 
 typedef void (*OnTouchCallback)(void);
@@ -15,7 +15,7 @@ extern OnTouchCallback onTouchCallbackFunction;
 
 void InitializeDisplay();
 bool InitializeTouchScreen(OnTouchCallback onTouch);
-void InitializeWiFi();
+void InitializeWiFi(String wifi_SSID, String wifi_Password);
 std::unordered_map<std::string, Building> InitializeBuildings();
 
 #endif

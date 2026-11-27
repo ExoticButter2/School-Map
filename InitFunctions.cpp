@@ -1,12 +1,11 @@
-#include <InitFunctions.h>
+#include "InitFunctions.h"
 #include <SPI.h>
-#include <Secrets.h>
-#include <DisplaySettings.h>
-#include <TouchScreenPinout.h>
+#include "DisplaySettings.h"
+#include "TouchScreenPinout.h"
 #include <WiFi.h>
 #include <User_Setups/Setup21_ILI9488.h>
-#include <SecondaryLoop.h>
-#include <TouchFunctions.h>
+#include "SecondaryLoop.h"
+#include "TouchFunctions.h"
 
 TFT_eSPI* tft;
 XPT2046_Touchscreen* touchScreen;
@@ -54,18 +53,18 @@ bool InitializeTouchScreen(OnTouchCallback onTouch)
     return true;
 }
 
-void InitializeWiFi()
+void InitializeWiFi(String wifi_SSID, String wifi_Password)
 {
     int status = WL_IDLE_STATUS;
     
     while (status != WL_CONNECTED)
     {
-        Serial.printf("Attempting to connect to %s", WIFI_SSID.c_str());
-        Serial.printf(" with password: %s\n", WIFI_Password.c_str());
+        Serial.printf("Attempting to connect to %s", wifi_SSID.c_str());
+        Serial.printf(" with password: %s\n", wifi_Password.c_str());
 
         Serial.printf("Wi-Fi status: %d\n", status);
 
-        WiFi.begin(WIFI_SSID.c_str(), WIFI_Password.c_str());
+        WiFi.begin(wifi_SSID, wifi_Password);
 
         status = WiFi.waitForConnectResult();
         
