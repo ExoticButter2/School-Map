@@ -223,7 +223,7 @@ bool IsUserAuthenticated()
 // true if authenticated, false if not
 bool HandleAuthenticationError(JsonDocument jsonToCheck) // cookies can expire
 {
-    if (jsonToCheck["error"]["code"] == -8998) // not authenticated
+    if (jsonToCheck["error"]["code"] == -8509) // not authenticated
     {
         AuthenticateUntis(Webuntis_User, Webuntis_Password);
         return false;
