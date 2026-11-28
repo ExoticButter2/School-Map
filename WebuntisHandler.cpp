@@ -34,7 +34,7 @@ bool AuthenticateUntis(String user, String password)
 {
     if (!httpClient.begin(client, jsonRPCURL))
     {
-        Serial.printf("Failed to connect to authentication using URL: %s", jsonRPCURL.c_str());
+        Serial.printf("Failed to connect to authentication using URL: %s\n", jsonRPCURL.c_str());
         return false;
     }
     else
@@ -58,7 +58,7 @@ bool AuthenticateUntis(String user, String password)
 
         if (httpResponseCode > 0)
         {
-            Serial.printf("HTTP Response: %d", httpResponseCode);
+            Serial.printf("HTTP Response: %d\n", httpResponseCode);
             String response = httpClient.getString();
             JsonDocument responseJson;
 
@@ -70,13 +70,13 @@ bool AuthenticateUntis(String user, String password)
 
             authenticatedUser = true;
 
-            Serial.printf("Session ID: %s", sessionID.c_str());
-            Serial.printf("Person Type: %s", String(personType).c_str());
-            Serial.printf("Person ID: %s", String(personID).c_str());
+            Serial.printf("Session ID: %s\n", sessionID.c_str());
+            Serial.printf("Person Type: %s\n", String(personType).c_str());
+            Serial.printf("Person ID: %s\n", String(personID).c_str());
         }
         else
         {
-            Serial.printf("Failed to send http response: %s", httpClient.errorToString(httpResponseCode).c_str());
+            Serial.printf("Failed to send http response: %s\n", httpClient.errorToString(httpResponseCode).c_str());
         }
 
         httpClient.end();
@@ -113,14 +113,14 @@ void LogoutUntis()
 
         if (httpResponseCode > 0)
         {
-            Serial.printf("HTTP Response: %d", httpResponseCode);
+            Serial.printf("HTTP Response: %d\n", httpResponseCode);
             sessionID = "";
             authenticatedUser = false;
-            Serial.printf("Successfully logged out");
+            Serial.println("Successfully logged out");
         }
         else
         {
-            Serial.printf("Failed to send http response: %s", httpClient.errorToString(httpResponseCode).c_str());
+            Serial.printf("Failed to send http response: %s\n", httpClient.errorToString(httpResponseCode).c_str());
         }
     }
 }
@@ -202,7 +202,7 @@ String GetTimeTableToday()
         }
         else
         {
-            Serial.printf("Failed to send http response: %s", httpClient.errorToString(httpResponseCode).c_str());
+            Serial.printf("Failed to send http response: %s\n", httpClient.errorToString(httpResponseCode).c_str());
         }
     }
 
