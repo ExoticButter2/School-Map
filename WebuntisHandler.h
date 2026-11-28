@@ -3,6 +3,8 @@
 
 #include <NetworkClientSecure.h>
 #include <HTTPClient.h>
+#include <Arduino.h>
+#include <ArduinoJson.h>
 
 inline String jsonRPCURL = "https://kgs-kirchberg.webuntis.com/WebUntis/jsonrpc.do?school=kgs-kirchberg";
 const inline char* untisURL = "kgs-kirchberg.webuntis.com";
@@ -43,11 +45,18 @@ inline NetworkClientSecure client;
 inline HTTPClient httpClient;
 
 inline String sessionID;
+inline int personType;
+inline int personID;
+
 inline bool authenticatedUser = false;
 
 bool ConnectClientToUntis();
 
 bool AuthenticateUntis(String user, String password);
 void LogoutUntis();
+String GetTimeTableToday();
+
+bool IsUserAuthenticated();
+bool HandleAuthenticationError(JsonDocument jsonToCheck);
 
 #endif

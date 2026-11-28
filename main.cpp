@@ -5,6 +5,8 @@
 #include "WebuntisHandler.h"
 #include "Secrets.h"
 #include <string>
+#include "TimeHandler.h"
+#include <ArduinoJson.h>
 
 void setup()
 {
@@ -13,10 +15,17 @@ void setup()
 
     InitializeWiFi(WIFI_SSID, WIFI_Password);
 
+    SyncTime();
+
     if (ConnectClientToUntis())
     {
         if (AuthenticateUntis(Webuntis_User, Webuntis_Password))
         {
+            String timeTableString = GetTimeTableToday();
+            JsonDocument timeTableJson;
+
+            deserializeJson(timeTableJson, timeTableString);
+
             LogoutUntis();
         }
         
